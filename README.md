@@ -28,11 +28,11 @@ Dự án web chuyển đổi PDF → Word, được xây dựng bằng JSP/Servl
 
 ---
 
-## 4. Hướng dẫn cài đặt Database (import file .sql)
+## 2. Hướng dẫn cài đặt Database (import file .sql)
 
 Hệ thống sử dụng MySQL/MariaDB. Toàn bộ cấu trúc bảng đã được đóng gói trong file `.sql` của dự án.
 
-### 4.1. Tạo database
+### 2.1. Tạo database
 
 Đăng nhập MySQL (phpMyAdmin, Workbench hoặc terminal) và chạy:
 
@@ -41,7 +41,7 @@ CREATE DATABASE pdf2word_db;
 USE pdf2word_db;
 ```
 
-### 4.2. Import file `.sql`
+### 2.2. Import file `.sql`
 
 Giả sử file nằm tại:  
 `/database/pdf2word_db.sql` trong project.
@@ -68,7 +68,7 @@ Sau khi import thành công, database sẽ có ít nhất 2 bảng chính:
 
 ---
 
-## 5. Cấu hình kết nối DB (DBConnection.java)
+## 3. Cấu hình kết nối DB (DBConnection.java)
 
 Mở file:
 
@@ -79,10 +79,10 @@ src/main/java/dao/DBConnection.java
 Chỉnh lại thông tin kết nối cho phù hợp với máy của bạn:
 
 ```java
-private static final String URL  =
+private static final String url  =
     "jdbc:mysql://localhost:3306/pdf2word_db?useSSL=false&serverTimezone=UTC";
-private static final String USER = "root";      // tài khoản MySQL
-private static final String PASS = "";          // mật khẩu MySQL (rỗng nếu dùng XAMPP mặc định)
+private static final String user = "root";      // tài khoản MySQL
+private static final String pass = "";          // mật khẩu MySQL (rỗng nếu dùng XAMPP mặc định)
 
 static {
     try {
@@ -99,7 +99,7 @@ static {
 
 ---
 
-## 6. Hướng dẫn chạy webapp
+## 4. Hướng dẫn chạy webapp
 
 1. **Build/Clean project (nếu dùng Eclipse)**  
    - `Project → Clean` để bảo đảm project được biên dịch lại.
@@ -122,11 +122,11 @@ Nếu mọi thứ cấu hình đúng, bạn sẽ thấy trang đăng nhập ho�
 
 ---
 
-## 7. Hướng dẫn sử dụng các chức năng
+## 5. Hướng dẫn sử dụng các chức năng
 
 Hệ thống cung cấp một số chức năng chính dành cho người dùng cuối:
 
-### 7.1. Đăng ký tài khoản
+### 5.1. Đăng ký tài khoản
 
 - Truy cập trang: `register.jsp` hoặc đường dẫn `/auth?action=register` (tuỳ cách điều hướng).  
 - Nhập:
@@ -134,7 +134,7 @@ Hệ thống cung cấp một số chức năng chính dành cho người dùng 
   - Mật khẩu.
 - Sau khi đăng ký thành công, tài khoản được lưu vào bảng `user`, người dùng có thể quay lại trang đăng nhập.
 
-### 7.2. Đăng nhập
+### 5.2. Đăng nhập
 
 - Truy cập: `login.jsp` hoặc `/auth`.  
 - Nhập username/mật khẩu vừa tạo.  
@@ -142,7 +142,7 @@ Hệ thống cung cấp một số chức năng chính dành cho người dùng 
   - Nếu đúng → tạo session (`userId`, `username`) và chuyển đến trang upload PDF.  
   - Nếu sai → hiển thị thông báo lỗi trên trang login.
 
-### 7.3. Upload file PDF (tạo job chuyển đổi)
+### 5.3. Upload file PDF (tạo job chuyển đổi)
 
 - Sau khi đăng nhập, vào trang `upload.jsp`.  
 - Chọn 1 file PDF từ máy (định dạng `.pdf`).  
@@ -151,7 +151,7 @@ Hệ thống cung cấp một số chức năng chính dành cho người dùng 
   - File PDF được lưu vào thư mục `uploads/` trên server.
   - Một record mới được tạo trong bảng `conversion_job` với trạng thái ban đầu là `PENDING`.
 
-### 7.4. Worker xử lý job ở chế độ nền
+### 5.4. Worker xử lý job ở chế độ nền
 
 - Khi webapp khởi động, `AppContextListener` sẽ tạo và chạy `JobWorker` trong một thread riêng.
 - `JobWorker` định kỳ:
@@ -163,7 +163,7 @@ Hệ thống cung cấp một số chức năng chính dành cho người dùng 
 
 Người dùng không cần giữ trình duyệt mở — quá trình xử lý chạy ngầm trên server.
 
-### 7.5. Xem lịch sử và trạng thái job
+### 5.5. Xem lịch sử và trạng thái job
 
 - Truy cập trang `jobs.jsp` hoặc đường dẫn `/jobs`.  
 - Hệ thống hiển thị danh sách các job của user đang đăng nhập, bao gồm:
@@ -175,7 +175,7 @@ Người dùng không cần giữ trình duyệt mở — quá trình xử lý c
 
 Người dùng có thể nhấn **Refresh** để cập nhật trạng thái mới nhất.
 
-### 7.6. Download file Word (.docx)
+### 5.6. Download file Word (.docx)
 
 - Khi một job có trạng thái `DONE`, ở cột **Hành động** sẽ xuất hiện nút/link **Download**.
 - Link này trỏ tới `DownloadServlet`, ví dụ:  
@@ -189,7 +189,7 @@ Người dùng có thể nhấn **Refresh** để cập nhật trạng thái m�
 
 ---
 
-## 10. Tác giả / Nhóm thực hiện
+## 6. Tác giả / Nhóm thực hiện
 
 - **Đề tài**: Ứng dụng web chuyển đổi PDF → Word có xử lý ngầm bằng hàng đợi.  
 - **Công nghệ sử dụng**:
@@ -201,3 +201,4 @@ Người dùng có thể nhấn **Refresh** để cập nhật trạng thái m�
     - Apache POI (tạo file Word `.docx`)
 - **Nhóm thực hiện**: Phạm Đức Hoài Nam, Phan Văn Hiếu.
 
+- **Lưu ý**: Trước khi chạy code ,hãy update maven để cập nhật toàn bộ thưu viên đi kèm.
