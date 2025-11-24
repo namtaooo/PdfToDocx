@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2025 at 05:19 PM
+-- Generation Time: Nov 24, 2025 at 06:23 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -36,18 +36,19 @@ CREATE TABLE `conversion_job` (
   `status` varchar(20) NOT NULL,
   `error_message` varchar(500) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `finished_at` timestamp NULL DEFAULT NULL
+  `finished_at` timestamp NULL DEFAULT NULL,
+  `real_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `conversion_job`
 --
 
-INSERT INTO `conversion_job` (`id`, `user_id`, `original_file_name`, `output_file_name`, `file_size`, `status`, `error_message`, `created_at`, `finished_at`) VALUES
-(1, 1, 'file.pdf', 'output.docx', 789, 'DONE', NULL, '2025-11-23 16:13:48', '2025-11-23 16:13:48'),
-(2, 1, 'pendingtest.pdf', NULL, 456, 'PENDING', NULL, '2025-11-23 16:13:48', NULL),
-(3, 1, 'abc123.pdf', NULL, 1234, 'PENDING', NULL, '2025-11-23 16:13:48', NULL),
-(4, 1, '4c6f8f27fbf64fc293f8b6e011d66910.pdf', NULL, 8, 'PENDING', NULL, '2025-11-23 16:17:44', NULL);
+INSERT INTO `conversion_job` (`id`, `user_id`, `original_file_name`, `output_file_name`, `file_size`, `status`, `error_message`, `created_at`, `finished_at`, `real_name`) VALUES
+(1, 6, 'b5a46c20a8f84b919ab400b2fba3ff27.pdf', 'BẢN THIẾT KẾ MÔ HÌNH MVC.docx', 139480, 'DONE', NULL, '2025-11-24 16:13:26', '2025-11-24 16:13:33', 'BẢN THIẾT KẾ MÔ HÌNH MVC.pdf'),
+(2, 6, 'c45cd9abbb54426f86292c5ab4443bf4.pdf', NULL, 8, 'FAILED', 'Error: End-of-File, expected line at offset 8', '2025-11-24 16:21:34', '2025-11-24 16:21:37', 'Bản bánh mỳ.pdf'),
+(3, 6, 'bb2dc8a013144057bc0cd1f93de586f4.pdf', 'Oke con dê.docx', 16067, 'DONE', NULL, '2025-11-24 16:27:36', '2025-11-24 16:27:43', 'Oke con dê.pdf'),
+(4, 6, '3a708e6ad20446f18477180900d6b741.pdf', 'Oke con dê.docx', 16067, 'DONE', NULL, '2025-11-24 16:42:55', '2025-11-24 16:42:56', 'Oke con dê.pdf');
 
 -- --------------------------------------------------------
 
@@ -71,7 +72,8 @@ INSERT INTO `user` (`id`, `username`, `password_hash`, `created_at`) VALUES
 (2, 'testuser_1763912341112', 'hash123', '2025-11-23 15:39:01'),
 (3, 'testuser_1763914115741', 'hash123', '2025-11-23 16:08:36'),
 (4, 'testuser_1763914184028', 'hash123', '2025-11-23 16:09:44'),
-(5, 'user_1763914484853', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '2025-11-23 16:14:45');
+(5, 'user_1763914484853', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '2025-11-23 16:14:45'),
+(6, 'namcaca', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', '2025-11-24 13:18:12');
 
 --
 -- Indexes for dumped tables
@@ -105,7 +107,7 @@ ALTER TABLE `conversion_job`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
