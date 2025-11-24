@@ -1,7 +1,5 @@
 package bo;
 
-import java.net.PasswordAuthentication;
-
 import dao.UserDao;
 import model.User;
 import util.PasswordUtil;
