@@ -1,0 +1,252 @@
+ /* -----------------------------------------------------
+   RESET + GLOBAL
+------------------------------------------------------ */
+* {
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
+/* -----------------------------------------------------
+   BACKGROUND CHUNG CHO CÁC TRANG
+------------------------------------------------------ */
+.bg-gradient {
+    background: linear-gradient(135deg, #4f46e5, #06b6d4);
+    min-height: 100vh;
+}
+
+/* -----------------------------------------------------
+   LOGIN PAGE
+------------------------------------------------------ */
+.login-container {
+    background: #ffffff;
+    width: 360px;
+    padding: 32px 28px;
+    border-radius: 16px;
+    margin: auto;
+    margin-top: 80px;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.25);
+}
+
+.login-title {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #374151;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 100%;
+    padding: 11px 14px;
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    font-size: 15px;
+}
+
+input:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+/* Submit button */
+.btn-submit {
+    width: 100%;
+    padding: 12px 0;
+    border-radius: 999px;
+    border: none;
+    background: linear-gradient(135deg, #4f46e5, #6366f1);
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    box-shadow: 0 10px 25px rgba(79, 70, 229, 0.4);
+}
+
+/* -----------------------------------------------------
+   REGISTER PAGE
+------------------------------------------------------ */
+.register-container {
+    background: #ffffff;
+    width: 380px;
+    padding: 36px 30px;
+    border-radius: 16px;
+    margin: auto;
+    margin-top: 80px;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.25);
+}
+
+.register-title {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.register-note {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.register-note a {
+    color: #4f46e5;
+    font-weight: 700;
+}
+
+/* -----------------------------------------------------
+   NAVBAR – dùng cho Upload + Jobs
+------------------------------------------------------ */
+.navbar {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    padding: 14px 26px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.nav-link {
+    background: rgba(255, 255, 255, 0.25);
+    padding: 8px 14px;
+    border-radius: 999px;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+}
+
+.logout-btn {
+    background: #ef4444;
+    padding: 8px 16px;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+/* -----------------------------------------------------
+   UPLOAD PAGE
+------------------------------------------------------ */
+.upload-container {
+    max-width: 600px;
+    background: white;
+    margin: 80px auto;
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.25);
+}
+
+.input-group {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.input-group input[type="text"] {
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+}
+
+.file-btn {
+    background: #06b6d4;
+    padding: 12px;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.upload-btn {
+    width: 100%;
+    padding: 14px 0;
+    border-radius: 999px;
+    font-weight: 700;
+    border: none;
+    background: linear-gradient(135deg, #4f46e5, #6366f1);
+    color: white;
+}
+
+/* -----------------------------------------------------
+   JOBS PAGE (Files converted)
+------------------------------------------------------ */
+.jobs-container {
+    max-width: 900px;
+    margin: 80px auto;
+    background: white;
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.25);
+}
+
+.jobs-title {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 18px;
+}
+
+thead {
+    background: #4f46e5;
+    color: white;
+}
+
+th, td {
+    padding: 14px;
+    text-align: left;
+    font-size: 15px;
+}
+
+tbody tr:nth-child(even) {
+    background: #f3f4f6;
+}
+
+tbody tr:hover {
+    background: #e0e7ff;
+}
+
+.download-btn {
+    background: #06b6d4;
+    padding: 10px 20px;
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;  
+    display: inline-block; 
+    text-align: center;
+    white-space: nowrap; 
+}
