@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 public class ConversionJob {
 	private int id;
 	private int userId;
+	private String realName;
 	private String originalFileName;
 	private String outputFileName;
 	private long fileSize;
@@ -12,6 +13,13 @@ public class ConversionJob {
 	private String ErrorMessage;
 	private LocalDateTime createdAt;
 	private LocalDateTime finishedAt;
+	
+	public String getRealName() {
+		return realName;
+	}
+	public void setRealName(String realName) {
+		this.realName = realName;
+	}
 	public int getId() {
 		return id;
 	}

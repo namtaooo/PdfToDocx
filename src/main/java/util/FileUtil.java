@@ -40,22 +40,23 @@ public class FileUtil {
     //  Lấy đường dẫn file upload theo tên
     //  (nếu không có request)
 	public static String getUploadPath(String fileName) {
-        String base = System.getProperty("pdf2word.uploadDir");
-        if (base == null) base = "uploads"; // fallback
-        return new File(base, fileName).getAbsolutePath();
-    }
+	    String base = System.getProperty("pdf2word.uploadDir");
+	    if (base == null) {
+	        throw new IllegalStateException("pdf2word.uploadDir chưa được set");
+	    }
+	    return new File(base, fileName).getAbsolutePath();
+	}
 	
 	// lấy thư mucjxuats file docx ra
 	public static String getOutputPath(String fileName) {
-        String base = System.getProperty("pdf2word.outputDir");
-        if (base == null) base = "outputs";
-
-        File dir = new File(base);
-        if (!dir.exists()) dir.mkdirs();
-
-        return new File(dir, fileName).getAbsolutePath();
-    }
-	
+	    String base = System.getProperty("pdf2word.outputDir");
+	    if (base == null) {
+	        throw new IllegalStateException("pdf2word.outputDir chưa được set");
+	    }
+	    File dir = new File(base);
+	    if (!dir.exists()) dir.mkdirs();
+	    return new File(dir, fileName).getAbsolutePath();
+	}
 	//  Đổi đuôi file
     public static String changeExtension(String originalName, String newExt) {
         int idx = originalName.lastIndexOf(".");

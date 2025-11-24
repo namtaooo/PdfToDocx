@@ -28,6 +28,7 @@ public class JobBo {
 		
 		// tạo job
 		ConversionJob job = new ConversionJob();
+		job.setRealName(fileName);
 		job.setUserId(userId);
 		job.setOriginalFileName(savedName);
 		job.setFileSize(savedFile.length());

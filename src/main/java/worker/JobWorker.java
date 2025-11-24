@@ -26,7 +26,7 @@ public class JobWorker implements Runnable{
 				
 				try {
 					String inputPath = FileUtil.getUploadPath(job.getOriginalFileName());
-					String outName = FileUtil.changeExtension(inputPath, ".docx");
+					String outName = FileUtil.changeExtension(job.getRealName(), ".docx");
 					String outputPath = FileUtil.getOutputPath(outName);
 					
 					PdfToWordConverter.convert(inputPath, outputPath);

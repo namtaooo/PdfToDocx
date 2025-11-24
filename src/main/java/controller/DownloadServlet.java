@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -61,12 +62,16 @@ public class DownloadServlet extends HttpServlet {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "File không tồn tại trên server");
             return;
         }
+		
 		// Mime type đơn giản cho docx
         response.setContentType(
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
         );
         String downloadName = job.getOutputFileName();
-        response.setHeader("Content-Disposition", "attachment; filename=\"" + downloadName + "\"");
+        String encoded = URLEncoder.encode(downloadName, "UTF-8")
+                .replaceAll("\\+", "%20"); 
+        response.setHeader("Content-Disposition",
+                "attachment; filename=\"" + encoded + "\"; filename*=UTF-8''" + encoded);
         response.setContentLengthLong(file.length());
         
         try (InputStream in = new FileInputStream(file);

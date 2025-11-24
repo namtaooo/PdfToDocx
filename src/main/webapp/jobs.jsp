@@ -54,6 +54,7 @@
 			        <th>Trạng thái</th>
 			        <th>Thời gian tạo</th>
 			        <th>Thời gian hoàn thành</th>
+			        <th>Lỗi</th>
 			        <th>Hành động</th>
                 </tr>
             </thead>
@@ -63,11 +64,14 @@
             	%>
             	<tr>
             	<td><%=job.getId() %></td>
-            	<td><%=job.getOriginalFileName() %></td>
+            	<td><%=job.getRealName() %></td>
             	<td><%=job.getOutputFileName() %></td>
             	<td><%=job.getStatus() %></td>
-            	<td><%=job.getCreatedAt() %></td>
+            	<td><%=job.getCreatedAt() %></td>      
+            	
+            		
             	<td><%=job.getFinishedAt() %></td>
+            	<td><%= job.getErrorMessage() == null ? "-" : job.getErrorMessage() %></td>
             	<td>
 				    <% if ("DONE".equals(job.getStatus())) { %>
 				        <a href="download?id=<%= job.getId() %>" class="btn-download">Tải xuống</a>

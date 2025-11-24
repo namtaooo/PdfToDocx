@@ -8,15 +8,16 @@ import model.ConversionJob;
 
 public class ConversionJobDao {
     public void insert(ConversionJob job) {
-        String sql = "INSERT INTO conversion_job(user_id, original_file_name, file_size, status, created_at) " +
-                     "VALUES (?, ?, ?, ?, NOW())";
+    	String sql = "INSERT INTO conversion_job(user_id, real_name, original_file_name, file_size, status, created_at) " +
+                "VALUES (?, ?, ?, ?, ?, NOW())";
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-            ps.setInt(1, job.getUserId());
-            ps.setString(2, job.getOriginalFileName());
-            ps.setLong(3, job.getFileSize());
-            ps.setString(4, job.getStatus());
+        	ps.setInt(1, job.getUserId());
+        	ps.setString(2, job.getRealName());
+        	ps.setString(3, job.getOriginalFileName());
+        	ps.setLong(4, job.getFileSize());
+        	ps.setString(5, job.getStatus());
 
             ps.executeUpdate();
             ResultSet keys = ps.getGeneratedKeys();
@@ -108,6 +109,7 @@ public class ConversionJobDao {
         ConversionJob job = new ConversionJob();
         job.setId(rs.getInt("id"));
         job.setUserId(rs.getInt("user_id"));
+        job.setRealName(rs.getString("real_name"));
         job.setOriginalFileName(rs.getString("original_file_name"));
         job.setOutputFileName(rs.getString("output_file_name"));
         job.setFileSize(rs.getLong("file_size"));
