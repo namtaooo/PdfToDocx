@@ -34,9 +34,12 @@
 				
 				<span>Xin chào, <strong><%= username %></strong></span>
 				</strong>
-            <form action="/auth" method="post" style="margin:0;">
-                <button type ="submit" name ="action" value = "logout"  class="logout-btn"">Đăng xuất</button>
-            </form>
+            <form action="<%= request.getContextPath() %>/auth" method="get" style="margin:0;">
+			    <button type="submit" name="action" value="logout" class="Logout-btn">
+			        Đăng xuất
+			    </button>
+			</form>
+
         </div>
     </div>
 

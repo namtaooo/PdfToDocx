@@ -16,7 +16,7 @@
         <div class="navbar-left">
             <h1>PDF to Docx</h1>
             <!-- Nút chuyển sang trang danh sách file đã chuyển -->
-            <a href="jobs.jsp" class="nav-link">File đã chuyển</a>
+            <a href="<%= request.getContextPath() %>/jobs" class="nav-link">File đã chuyển</a>
         </div>
 
         <div class="user-info">
@@ -31,9 +31,12 @@
 				
 				<span>Xin chào, <strong><%= username %></strong></span>
 				</strong>
-            <form action="auth" method="get" style="margin:0;">
-                <button type ="submit" name ="action" value = "logout"  class="logout-btn"">Đăng xuất</button>
-            </form>
+            <form action="<%= request.getContextPath() %>/auth" method="get" style="margin:0;">
+			    <button type="submit" name="action" value="logout" class="Logout-btn">
+			        Đăng xuất
+			    </button>
+			</form>
+
         </div>
     </div>
 
