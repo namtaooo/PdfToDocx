@@ -1,5 +1,6 @@
 <%@page import="model.ConversionJob"%>
-<%@page import="java.util.List;"%>
+<%@page import="java.util.List"%>
+<%@page import="java.io.*" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="vi">
@@ -22,9 +23,17 @@
         </div>
 
         <div class="user-info">
-            <span>Xin chào,
-                <strong><%= request.getAttribute("username") != null ? request.getAttribute("username") : "User" %></strong>
-            </span>
+          <%    HttpSession ss = request.getSession(false); %>
+                <strong><%
+				    if (ss == null || ss.getAttribute("username") == null) {
+				        response.sendRedirect("login.jsp");
+				        return;
+				    }
+				    String username = (String) ss.getAttribute("username");
+				%>
+				
+				<span>Xin chào, <strong><%= username %></strong></span>
+				</strong>
             <form action="/auth" method="post" style="margin:0;">
                 <button type ="submit" name ="action" value = "logout"  class="logout-btn"">Đăng xuất</button>
             </form>
@@ -32,6 +41,7 @@
     </div>
 
     <!-- MAIN CONTENT -->
+    <form action="/jobs" method="get" >
     <div class="jobs-container">
         <h2 class="jobs-title">Danh sách file đã chuyển</h2>
 
@@ -40,48 +50,40 @@
                 <tr>
                     <th>ID</th>
 			        <th>Tên file PDF</th>
+			    	<th>Tên file sau khi chuyển</th>
 			        <th>Trạng thái</th>
-			        <th>File Word</th>
 			        <th>Thời gian tạo</th>
 			        <th>Thời gian hoàn thành</th>
 			        <th>Hành động</th>
                 </tr>
             </thead>
             <tbody>
-
-                <tr>
-                	<td>001</td>
-                    <td>Example.pdf</td>
-                    <td>Done</td>
-                    <td>12/02/2025</td>
-                    <td>DOCX</td>
-                    <td>
-                        <a href="download?file=Example.docx" class="download-btn">Tải xuống</a>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>BaoCao.pdf</td>
-                    <td>10/02/2025</td>
-                    <td>DOCX</td>
-                    <td>
-                        <a href="download?file=BaoCao.docx" class="download-btn">Tải xuống</a>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>BaiTap.pdf</td>
-                    <td>08/02/2025</td>
-                    <td>DOCX</td>
-                    <td>
-                        <a href="download?file=BaiTap.docx" class="download-btn">Tải xuống</a>
-                    </td>
-                </tr>
-
+            <%if(jobs!=null){
+            	for(ConversionJob job: jobs){
+            	%>
+            	<tr>
+            	<td><%=job.getId() %></td>
+            	<td><%=job.getOriginalFileName() %></td>
+            	<td><%=job.getOutputFileName() %></td>
+            	<td><%=job.getStatus() %></td>
+            	<td><%=job.getCreatedAt() %></td>
+            	<td><%=job.getFinishedAt() %></td>
+            	<td>
+				    <% if ("DONE".equals(job.getStatus())) { %>
+				        <a href="download?id=<%= job.getId() %>" class="btn-download">Tải xuống</a>
+				    <% } else { }%>
+				</td>
+				</tr>
+				<%
+            		}
+            	}
+				%>
+            
             </tbody>
         </table>
 
-    </div>
+    </div></form>
+    
 
 </body>
 </html>

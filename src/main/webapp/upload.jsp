@@ -21,7 +21,6 @@
 
         <div class="user-info">
         <%    HttpSession ss = request.getSession(false); %>
-            <span>Xin chào,
                 <strong><%
 				    if (ss == null || ss.getAttribute("username") == null) {
 				        response.sendRedirect("login.jsp");
@@ -32,7 +31,6 @@
 				
 				<span>Xin chào, <strong><%= username %></strong></span>
 				</strong>
-            </span>
             <form action="auth" method="get" style="margin:0;">
                 <button type ="submit" name ="action" value = "logout"  class="logout-btn"">Đăng xuất</button>
             </form>
@@ -48,7 +46,7 @@
 
             <!-- Nhập địa chỉ (URL hoặc đường dẫn hiển thị) -->
             <div class="input-group">
-                <input type="text" id="filePathInput" name="filepath"
+                <input type="pdfFile" id="filePathInput" name="filepath"
                        placeholder="Nhập đường dẫn hoặc chọn tệp từ máy">
                 <button type="button" class="file-btn"
                         onclick="document.getElementById('fileInput').click();">
@@ -57,7 +55,7 @@
             </div>
 
             <!-- input file ẩn -->
-            <input type="file" id="fileInput" name="file" accept="application/pdf" style="display:none">
+            <input type="file" id="fileInput" name="pdfFile" accept="application/pdf" style="display:none">
 
             <button type="submit" class="upload-btn">Tải lên & chuyển đổi</button>
         </form>
