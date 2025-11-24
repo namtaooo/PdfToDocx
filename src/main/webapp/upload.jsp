@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@page import="javax.servlet.http.HttpSession"%>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -19,8 +20,18 @@
         </div>
 
         <div class="user-info">
+        <%    HttpSession ss = request.getSession(false); %>
             <span>Xin chào,
-                <strong><%= request.getAttribute("username") != null ? request.getAttribute("username") : "User" %></strong>
+                <strong><%
+				    if (ss == null || ss.getAttribute("username") == null) {
+				        response.sendRedirect("login.jsp");
+				        return;
+				    }
+				    String username = (String) ss.getAttribute("username");
+				%>
+				
+				<span>Xin chào, <strong><%= username %></strong></span>
+				</strong>
             </span>
             <form action="auth" method="get" style="margin:0;">
                 <button type ="submit" name ="action" value = "logout"  class="logout-btn"">Đăng xuất</button>
