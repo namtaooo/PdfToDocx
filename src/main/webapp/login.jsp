@@ -141,7 +141,8 @@
         <h2 class="login-title">Đăng nhập</h2>
 
         <!-- Thêm action và method nếu bạn có servlet xử lý -->
-        <form action="login" method="post">
+        <form action="auth" method="post">
+        	<input type="hidden" name="action" value="login">
             <div class="form-group">
                 <label for="username">Tên đăng nhập</label>
                 <input type="text" id="username" name="username" placeholder="Nhập tên đăng nhập">
