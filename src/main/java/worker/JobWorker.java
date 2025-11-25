@@ -1,6 +1,8 @@
 package worker;
 
 
+import java.io.File;
+
 import bo.PdfToWordConverter;
 import dao.ConversionJobDao;
 import model.ConversionJob;
@@ -32,6 +34,10 @@ public class JobWorker implements Runnable{
 					PdfToWordConverter.convert(inputPath, outputPath);
 					
 					jd.updateSuccess(job.getId(), outName);
+					try {
+					    File f = new File(inputPath);
+					    if (f.exists()) f.delete();
+					} catch (Exception ignore) {}
 					
 				}catch (Exception ex) {
 					jd.updateStatus(job.getId(), "FAILED", ex.getMessage());
